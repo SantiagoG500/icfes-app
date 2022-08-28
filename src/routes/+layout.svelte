@@ -1,5 +1,17 @@
 <script>
 	import { user, isLoggedIn } from '../stores.js';
+	import { auth } from '../firebase';
+	import { onAuthStateChanged } from 'firebase/auth';
+
+	onAuthStateChanged(auth, (currentUser) => {
+		if (currentUser) {
+			$user = currentUser;
+			$isLoggedIn = true;
+		} else {
+			$user = {};
+			$isLoggedIn = false;
+		}
+	});
 </script>
 
 <header>
@@ -10,7 +22,6 @@
 			<li><a href="courses/">Inicia tu examen</a></li>
 			<li><a href="home/">Home</a></li>
 			<li><a href="account/">Perfil</a></li>
-			<li><a href="./">Log Out</a></li>
 		{:else}
 			<li><a href="home/">Home</a></li>
 			<li><a href="login/">Inicia sesión</a></li>
@@ -21,3 +32,10 @@
 <slot />
 
 <footer>esto es un footer</footer>
+
+<style>
+	:global(body) {
+		background-color: black;
+		color: white;
+	}
+</style>

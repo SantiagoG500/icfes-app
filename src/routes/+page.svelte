@@ -4,7 +4,7 @@
 
 <main>
 	<header>
-		<h1>nombre de la epmresa</h1>
+		<h1>nombre de la empresa</h1>
 		<p>en este sitio ofrecemos una forma de practicar para las pruebas saber 11°</p>
 	</header>
 	<main>
