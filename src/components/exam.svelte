@@ -48,5 +48,7 @@
 	.fieldset {
 		display: flex;
 		flex-direction: column;
+
+		border: none;
 	}
 </style>

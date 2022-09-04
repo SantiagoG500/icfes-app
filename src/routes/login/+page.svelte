@@ -25,7 +25,10 @@
 
 <main>
 	{#if $isLoggedIn}
-		<h1>Usuario {$user.displayName} esta logeado</h1>
+		<h1 class="title">Usuario {$user.displayName} esta logeado</h1>
+		<a href="../home/">
+			<button class="btn"> regresa al inicio </button>
+		</a>
 	{:else}
 		<h1>login</h1>
 		<p>Usa Nuestra opción de logeo</p>

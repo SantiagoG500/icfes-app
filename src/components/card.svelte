@@ -39,8 +39,8 @@
 
 		content: '';
 
-		height: 5px;
-		background-color: cyan;
+		height: 9px;
+		background-color: var(--black-cyan);
 	}
 
 	.card__img {

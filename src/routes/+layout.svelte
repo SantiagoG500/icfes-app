@@ -19,7 +19,7 @@
 		<ul class="nav__ul">
 			{#if $isLoggedIn}
 				<li class="nav__li"><a class="link link--nav" href="home/">Home</a></li>
-				<li class="nav__li"><a class="link link--nav" href="courses/">Inicia tu examen</a></li>
+
 				<li class="nav__li"><a class="link link--nav" href="account/">Perfil</a></li>
 			{:else}
 				<li class="nav__li"><a class="link link--nav" href="home/">Home</a></li>
@@ -63,6 +63,8 @@
     --gray5: #2a2e35;
     --gray6: #12181b;
 
+		--black-cyan: hsl(180, 100%, 30%);
+
 		--font-light: 200,
 		--font-medium: 400,
 		--font-bold: 700,
@@ -90,7 +92,17 @@
 	:global(.title){
 		text-align: center;
 	}
-	
+	:global(.btn){
+		display: block;
+		margin: 0 auto;
+		margin-top: 1rem;
+		padding: .5em 1em;
+
+		border: none;
+		color: white;
+
+		background-color: var(--gray3);
+	}
 	
 	:global(.header--section){
 		display: flex;
@@ -161,6 +173,9 @@
 		:global(.link):hover{
 			color: var(--gray0);
 			text-decoration: underline;
+		}
+		:global(.btn):hover{
+			background-color: var(--black-cyan);
 		}
 	}
 

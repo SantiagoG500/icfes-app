@@ -9,7 +9,7 @@
 	</header>
 
 	<main class="section">
-		<h2 class="title--subtitle">¿Que es lo que ofrecemos?</h2>
+		<h2 class="title title--subtitle">¿Que es lo que ofrecemos?</h2>
 
 		<Card
 			title={'titulo de ejemplo'}
