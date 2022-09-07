@@ -7,7 +7,7 @@
 
 <article class="card">
 	<header class="card__header">
-		<h3 class="title--subtitle">{title}</h3>
+		<h3 class="title title--subtitle">{title}</h3>
 	</header>
 	<section class="card__section">
 		{content}
@@ -51,6 +51,7 @@
 	}
 
 	.title--subtitle {
+		text-align: start;
 		margin-top: 0px;
 	}
 </style>
