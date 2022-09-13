@@ -18,11 +18,11 @@
 	<nav class="nav-bar">
 		<ul class="nav__ul">
 			{#if $isLoggedIn}
-				<li class="nav__li"><a class="link link--nav" href="home/">Home</a></li>
-
+				<li class="nav__li"><a class="link link--nav" href="./">Home</a></li>
+				<li class="nav__li"><a class="link link--nav" href="home/">Inicia tu prueba</a></li>
 				<li class="nav__li"><a class="link link--nav" href="account/">Perfil</a></li>
 			{:else}
-				<li class="nav__li"><a class="link link--nav" href="home/">Home</a></li>
+				<li class="nav__li"><a class="link link--nav" href="./">Home</a></li>
 				<li class="nav__li"><a class="link link--nav" href="login/">Inicia sesión</a></li>
 			{/if}
 		</ul>

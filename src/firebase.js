@@ -1,5 +1,11 @@
 import { initializeApp } from 'firebase/app';
-import { getAuth } from 'firebase/auth';
+import {
+	getAuth,
+	deleteUser
+	// sendEmailVerification
+} from 'firebase/auth';
+
+import { goto } from '$app/navigation';
 import { getFirestore, collection, getDocs, addDoc } from 'firebase/firestore';
 
 const firebaseConfig = {
@@ -31,6 +37,17 @@ export function addUser(user) {
 		uid: user.uid,
 		exams: {}
 	});
+}
+
+export async function delUser(user) {
+	deleteUser(user)
+		.then(() => {
+			goto('./');
+		})
+		.catch((error) => {
+			console.log(error);
+			return error;
+		});
 }
 
 // https://www.youtube.com/watch?v=2yNyiW_41H8
