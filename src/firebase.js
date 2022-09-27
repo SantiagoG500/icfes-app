@@ -1,12 +1,8 @@
 import { initializeApp } from 'firebase/app';
-import {
-	getAuth,
-	deleteUser
-	// sendEmailVerification
-} from 'firebase/auth';
+import { getAuth, deleteUser } from 'firebase/auth';
 
 import { goto } from '$app/navigation';
-import { getFirestore, collection, getDocs, addDoc } from 'firebase/firestore';
+import { getFirestore, collection, getDocs, setDoc, doc, getDoc } from 'firebase/firestore';
 
 const firebaseConfig = {
 	apiKey: 'AIzaSyCLHhJSwd8iFZUz7c9RyrjJ4WT2O9cRm_U',
@@ -29,9 +25,9 @@ export async function getDocuments(collName) {
 	return data;
 }
 
-export function addUser(user) {
-	const collRef = collection(db, 'users');
-	addDoc(collRef, {
+export async function addUser(user) {
+	const docRef = doc(db, 'users', user.uid);
+	await setDoc(docRef, {
 		displayName: user.displayName,
 		email: user.email,
 		uid: user.uid,
@@ -50,4 +46,11 @@ export async function delUser(user) {
 		});
 }
 
-// https://www.youtube.com/watch?v=2yNyiW_41H8
+export async function getUserDoc(userUid) {
+	const docRef = doc(db, 'users', userUid);
+	const docUser = getDoc(docRef);
+
+	const response = (await docUser).data();
+	// console.log(response);
+	return response;
+}

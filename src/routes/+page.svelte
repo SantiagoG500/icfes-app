@@ -4,6 +4,8 @@
 
 <main>
 	<header class="header--section">
+		<!-- <img src="%sveltekit.assets%/logo-sena-phare.png" alt="Logo Phare" /> -->
+
 		<h1 class="title">PHARE</h1>
 		<p>en este sitio ofrecemos una forma de practicar para las pruebas saber 11°</p>
 	</header>

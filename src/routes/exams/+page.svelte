@@ -8,7 +8,7 @@
 				<button class="btn"> Inicia la prueba </button>
 			</a>
 		</section>
-
+		<!-- 
 		<section class="section course">
 			<h2 class="title-course">Lectura crítica</h2>
 			<img class="course__img" src="https://picsum.photos/100/100" alt="matematicas img" />
@@ -31,7 +31,7 @@
 			<a class="link" href="../social-sciences-exam">
 				<button class="btn"> Inicia la prueba </button>
 			</a>
-		</section>
+		</section> -->
 	</article>
 </main>
 

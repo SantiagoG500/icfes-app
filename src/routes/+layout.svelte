@@ -19,8 +19,9 @@
 		<ul class="nav__ul">
 			{#if $isLoggedIn}
 				<li class="nav__li"><a class="link link--nav" href="./">Home</a></li>
-				<li class="nav__li"><a class="link link--nav" href="home/">Inicia tu prueba</a></li>
+				<li class="nav__li"><a class="link link--nav" href="exams/">Inicia tu prueba</a></li>
 				<li class="nav__li"><a class="link link--nav" href="account/">Perfil</a></li>
+				<li class="nav__li"><a class="link link--nav" href="results/">Resultados</a></li>
 			{:else}
 				<li class="nav__li"><a class="link link--nav" href="./">Home</a></li>
 				<li class="nav__li"><a class="link link--nav" href="login/">Inicia sesión</a></li>
@@ -108,6 +109,9 @@
 	:global(.title) {
 		text-align: center;
 	}
+	:global(.title--subtitle) {
+		font-size: 1.2rem;
+	}
 	:global(.btn) {
 		display: block;
 		margin: 0 auto;
@@ -132,6 +136,7 @@
 		width: 95%;
 		margin-right: auto;
 		margin-left: auto;
+		margin-top: 1.5rem;
 
 		padding-top: 1rem;
 		padding-bottom: 1rem;
@@ -195,10 +200,6 @@
 		}
 	}
 	@media screen and (min-width: 900px) {
-		/* .link--nav {
-			font-size: 5px;
-		} */
-
 		.footer {
 			padding-top: 1.5rem;
 			padding-bottom: 1.5rem;
