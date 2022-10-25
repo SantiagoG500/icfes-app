@@ -1,7 +1,5 @@
 <script>
-	import Result from '../../components/results.svelte';
+	import Results from '../../components/results.svelte';
 </script>
 
-<main class="section">
-	<Result />
-</main>
+<Results />

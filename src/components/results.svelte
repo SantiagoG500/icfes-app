@@ -1,40 +1,61 @@
 <script>
 	import { getUserDoc } from '../firebase.js';
 	import { user } from '../stores.js';
+	import { onMount } from "svelte";
+
+	onMount(async () => {
+		const xd = await getUserDoc($user.uid)
+		// console.log(xd.exams);
+	})
 </script>
 
-<section>
-	{#await getUserDoc($user.uid)}
-		<p>espera xd</p>
-	{:then response}
-		{#each response.exams as setExam}
-			<h2 class="title">{setExam.exam}</h2>
+{#await getUserDoc($user.uid)}
+	<h1 class="title">Espera un minuto, por favor...</h1>
+{:then response}
 
-			{#each setExam.setProblems as setProblem}
-				<h2 class="title--subtitle">{setProblem.problem}</h2>
-
+	{#each response.exams as exam}
+		<section class="section">
+			<h2 class="title">{exam.examName}</h2>
+			{#each exam.setProblems as setProblem}
+				<p class="text">{setProblem.problem.problem}</p>
+				<br>
+				<br>
+				<br>
 				{#each setProblem.setQuestions as setQuestion}
 					<p>{setQuestion.question}</p>
-
 					<ul class="answers">
 						{#each setQuestion.answers as answer}
-							<li class="answers__answer">
-								<span>{answer}</span>
-								{#if answer === setQuestion.userAnswer}
-									{#if answer !== setQuestion.correctAnswer}
-										<span class="answer answer--incorrect">Tu respuesta</span>
-									{:else}
-										<span class="answer answer--correct">Tu respuesta</span>
-									{/if}
+
+							{#if answer === setQuestion.userAnswer}
+								{#if setQuestion.userAnswer !== setQuestion.correctAnswer}
+									<li class="answers__answer answers__answer--incorrect">{answer}</li>
+								{:else}
+									<li class="answers__answer answers__answer--correct">{answer}</li>
 								{/if}
-							</li>
+							{:else}
+								{#if answer === setQuestion.correctAnswer}
+									<li class="answers__answer answers__answer--correct">{answer}</li>
+								{:else}
+									<li class="answers__answer">{answer}</li>
+								{/if}
+							{/if}
+							<!-- {#if setQuestion.userAnswer === setQuestion.correctAnswer}
+								<li class="answers__answer answers__answer--correct">{answer}</li>
+							{:else if setQuestion.userAnswer !== setQuestion.correctAnswer}	
+								<li class="answers__answer answers__answer--incorrect">{answer}</li>
+							{:else}
+								<li class="answers__answer answers__answer--incorrect">{answer}</li>
+							{/if}
+							 -->
 						{/each}
 					</ul>
 				{/each}
+
 			{/each}
-		{/each}
-	{/await}
-</section>
+		</section>
+	{/each}
+{/await}
+
 
 <style>
 	.answers {
@@ -57,23 +78,11 @@
 		border: 3px solid var(--gray0);
 	}
 
-	.answer {
-		display: inline-block;
-
-		padding: 0 0.5em;
-		margin-top: 0.5rem;
-
-		font-size: 0.8rem;
-		font-weight: var(--font-bold);
-
-		border: 1px solid var(--gray0);
+	.answers__answer--incorrect{
+		border-color: hsl(0, 54%, 48%);
 	}
-	.answer--correct {
-		background-color: hsl(90, 90%, 40%);
-		color: var(--gray0);
-	}
-	.answer--incorrect {
-		background-color: hsl(0, 90%, 40%);
-		color: var(--gray0);
+
+	.answers__answer--correct{
+		border-color: hsl(121, 54%, 48%);
 	}
 </style>

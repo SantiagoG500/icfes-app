@@ -2,7 +2,7 @@ import { initializeApp } from 'firebase/app';
 import { getAuth, deleteUser } from 'firebase/auth';
 
 import { goto } from '$app/navigation';
-import { getFirestore, collection, getDocs, setDoc, doc, getDoc } from 'firebase/firestore';
+import { getFirestore, collection, getDocs, setDoc, doc, getDoc, updateDoc } from 'firebase/firestore';
 
 const firebaseConfig = {
 	apiKey: 'AIzaSyCLHhJSwd8iFZUz7c9RyrjJ4WT2O9cRm_U',
@@ -49,8 +49,46 @@ export async function delUser(user) {
 export async function getUserDoc(userUid) {
 	const docRef = doc(db, 'users', userUid);
 	const docUser = getDoc(docRef);
-
 	const response = (await docUser).data();
-	// console.log(response);
 	return response;
+}
+
+export async function addUserExam (docRef, setExam, uid){
+	const userDoc = await getUserDoc(uid)
+	const { exams } = userDoc
+	
+	const diffBetweenDays = (currentTimeStamp, lastTimeStamp) => {
+		console.log({currentTimeStamp, lastTimeStamp});
+			// const date = new Date('2022-10-25')
+		// const dateInFuture = new Date('2022-10-29')
+		// const dayInMiliseconds = 86400000
+		// console.log({date, dateInFuture});
+		
+		// // comparisson of how many days gone between one date and another
+		
+		// const diffInMilliseconds = dateInFuture - date
+		// const diffInDays = diffInMilliseconds / dayInMiliseconds
+		// console.log(diffInDays);
+
+	}
+
+	if (exams.length === 0) {
+		return updateDoc(docRef, {
+			exams: [{...setExam}]
+		}).catch((error) => console.log(`ERROR (updateDoc): ${error}`));	
+	} 
+		
+	const foundExam = exams.find(exam => exam.examName === setExam.examName)
+	
+	console.log(foundExam);
+	console.log(setExam);
+
+	if (!foundExam) {
+		return updateDoc(docRef, {
+			exams: [...exams, {...setExam}]
+		}).catch((error) => console.log(`ERROR (updateDoc): ${error}`));	
+	}else console.log('el examen ya está añadido')
+
+
+
 }

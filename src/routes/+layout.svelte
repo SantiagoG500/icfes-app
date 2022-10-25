@@ -5,8 +5,10 @@
 
 	onAuthStateChanged(auth, (currentUser) => {
 		if (currentUser) {
-			$user = currentUser;
-			$isLoggedIn = true;
+			user.set(currentUser)
+			isLoggedIn.set(true)
+			// $user = currentUser;
+			// $isLoggedIn = true;
 		} else {
 			$user = {};
 			$isLoggedIn = false;
@@ -138,10 +140,12 @@
 		margin-left: auto;
 		margin-top: 1.5rem;
 
-		padding-top: 1rem;
+		padding: 1rem;
+
+		/* padding-top: 1rem;
 		padding-bottom: 1rem;
 		padding-right: 2rem;
-		padding-left: 2rem;
+		padding-left: 2rem; */
 
 		border-radius: 1rem;
 		background-color: var(--gray5);

@@ -4,4 +4,4 @@
 
 <h1 class="title">Prueba de inglés</h1>
 
-<Exam />
+<Exam examName={'ingles'}/>
