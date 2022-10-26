@@ -1,15 +1,24 @@
 <script>
-	import ExamCard  from "../../components/exam-card.svelte";
+	import ExamCards  from "../../components/exam-card.svelte";
 </script>
 
-<main>
+<main class="container">
 	<h1 class="title">Inicia tu prueba</h1>
 	<article class="courses">
-
-		<ExamCard examTitle={'Matemáticas'} examImg={'https://picsum.photos/100/100'} examImgAlt={'Matemàticas img'}
-		 examLInk={'/math-exam'}/>
-
-		<!-- <ExamCard examTitle={'Inglés'} examImg={'https://picsum.photos/100/100'} examImgAlt={'Inglés img'}
-		 examLInk={'/english-exam'}/> -->
+		<ExamCards />
 	</article>
 </main>
+
+<style>
+	.container{
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
+	.courses{
+		max-width: 97%;
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(19rem, 1fr));
+		gap: 1rem;
+	}
+</style>

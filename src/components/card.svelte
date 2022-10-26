@@ -10,23 +10,28 @@
 		<h3 class="title title--subtitle">{title}</h3>
 	</header>
 	<section class="card__section">
-		{content}
+		<p class="text"> {content} </p>
 	</section>
 	<img class="card__img" src={srcImg} alt={imgAltTxt} />
 </article>
 
 <style>
 	.card {
+		display: flex;
+		flex-wrap: wrap;
 		position: relative;
 
 		padding: 1em;
 		margin-top: 1rem;
 		margin-bottom: 1rem;
 
-		height: min-content;
+		/* height: min-content; */
+		min-height: 13rem;
 
 		border-radius: 0.5rem;
 		overflow: hidden;
+
+		border: 3px solid var(--black-cyan);
 		background-color: var(--gray4);
 	}
 	.card::before {
@@ -44,9 +49,9 @@
 	}
 
 	.card__img {
-		display: block;
+		width: 100px;
 
-		margin-top: 1rem;
+		margin-top: 2rem;
 		margin-left: auto;
 	}
 

@@ -3,6 +3,7 @@ import { getAuth, deleteUser } from 'firebase/auth';
 
 import { goto } from '$app/navigation';
 import { getFirestore, collection, getDocs, setDoc, doc, getDoc, updateDoc } from 'firebase/firestore';
+import { fix_and_outro_and_destroy_block } from 'svelte/internal';
 
 const firebaseConfig = {
 	apiKey: 'AIzaSyCLHhJSwd8iFZUz7c9RyrjJ4WT2O9cRm_U',
@@ -31,7 +32,7 @@ export async function addUser(user) {
 		displayName: user.displayName,
 		email: user.email,
 		uid: user.uid,
-		exams: {}
+		exams: []
 	});
 }
 
@@ -77,18 +78,20 @@ export async function addUserExam (docRef, setExam, uid){
 			exams: [{...setExam}]
 		}).catch((error) => console.log(`ERROR (updateDoc): ${error}`));	
 	} 
-		
 	const foundExam = exams.find(exam => exam.examName === setExam.examName)
 	
-	console.log(foundExam);
-	console.log(setExam);
-
 	if (!foundExam) {
 		return updateDoc(docRef, {
 			exams: [...exams, {...setExam}]
 		}).catch((error) => console.log(`ERROR (updateDoc): ${error}`));	
-	}else console.log('el examen ya está añadido')
+	}else if(foundExam){
+		const indexOfExam = exams.indexOf(foundExam)
+		exams.splice(indexOfExam, 1, {...setExam})
 
-
-
+		// console.log(exams);
+		// return updateDoc(docRef, {
+		// 	exams: [...exams]
+		// }).catch((error) => console.log(`ERROR (updateDoc): ${error}`));	
+	}
+	
 }

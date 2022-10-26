@@ -14,37 +14,27 @@
 		<h2 class="title title--subtitle">¿Que es lo que ofrecemos?</h2>
 		<section class="card-container">
 			<Card
-				title={'Un sitio interactivo'}
-				content={'Proveemos de una plataforma en la que el estudiante pueda practicar cómodamente.'}
-				srcImg={'https://picsum.photos/100/100'}
-				imgAltTxt={'imagen random xd '}
+				title={'Misión:'}
+				content={'Acercar a nuestros usuarios a su proyecto de vida dándoles elementos con los que poder ponerse a prueba, y mejorar en el proceso'}
+				srcImg={'icons/Teaching.png'}
+				imgAltTxt={'Misión img'}
 			/>
+				<!-- content={'Proporcionar elementos al estudiante para la realización de sus pruebas o autoevaluación y el desarrollo de su proyecto de vida'} -->
 
 			<Card
-				title={'Pocos tiempos de espera'}
-				content={'A la hora de registrarte puedes realizar practicas inmediatamente'}
-				srcImg={'https://picsum.photos/100/100'}
-				imgAltTxt={'imagen random xd '}
+				title={'Visión'}
+				content={'Darnos a conocer como emprendedores, lograr ayudar a mejorar el desempeño de las personas, proporcionar un buen servicio al cliente y favorecer un gran servicio con nuestra idea emprendedora y ayudar a prepararlos.'}
+				srcImg={'icons/vision.png'}
+				imgAltTxt={'Visión img'}
 			/>
-
-			<Card
-				title={'Aprendizaje a tu ritmo'}
-				content={'Los resultados de tu examen podrán ser consultados en todo momento'}
-				srcImg={'https://picsum.photos/100/100'}
-				imgAltTxt={'imagen random xd '}
-			/>
-		</section>
+	</section>
 		<h2 class="title title--subtitle">Nuestra identidad</h2>
-		<p>
-			Phare (palabra francesa que signfica "faro"), es un proyecto con la premisa de ser una
-			plataforma interactiva que guíe a los estudiantes para obtener el mejor resultado posible en
-			las pruebas saber 11.
-		</p>
-
-		<p>
-			El concepto de ser una guia fue lo que dio origen a la identidad de este proyecto, de la mima
-			manera en la que un faro es una guia para los barcos cuando estos no pueden ver el camino,
-			nuestro proyecto pretende ser ese faro que guie el camino del estudiante al camino indicado.
+		<p class="text">
+			Phare. Es una palabra francesa que se a traduce como "faro" en español, un faro es un sìmbolo de
+			una guìa. De la misma manera en la que un faro evita que los barcos se pierdan en un día brumoso,
+			o en una noche. Nosotros, bajo este mismo principio buscamos guiar a nuestros usuarios, encaminándolos
+			hacia sus proyectos de vida, preparándolos con un simulacro del tipo ICFES para que puedan afrontar la
+			prueba de la mejor manera posible
 		</p>
 	</main>
 </main>

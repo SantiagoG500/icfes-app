@@ -1,64 +1,75 @@
 <script>
+	import ExamsCard  from "../components/exam-card.svelte";
 	import { getUserDoc } from '../firebase.js';
 	import { user } from '../stores.js';
-	import { onMount } from "svelte";
+	// import { onMount } from "svelte";
 
-	onMount(async () => {
-		const xd = await getUserDoc($user.uid)
-		// console.log(xd.exams);
-	})
+	// onMount(async () => {
+	// 	const xd = await getUserDoc($user.uid)
+	// 	console.log(xd.exams);
+	// })
 </script>
 
 {#await getUserDoc($user.uid)}
-	<h1 class="title">Espera un minuto, por favor...</h1>
+		<h1 class="title">Espera un minuto, por favor...</h1>
 {:then response}
 
-	{#each response.exams as exam}
-		<section class="section">
-			<h2 class="title">{exam.examName}</h2>
-			{#each exam.setProblems as setProblem}
-				<p class="text">{setProblem.problem.problem}</p>
-				<br>
-				<br>
-				<br>
-				{#each setProblem.setQuestions as setQuestion}
-					<p>{setQuestion.question}</p>
-					<ul class="answers">
-						{#each setQuestion.answers as answer}
+	
+	<h2 class="title title--subtitle">Desliza a los lados para ver los resultados de otras pruebas</h2>
 
-							{#if answer === setQuestion.userAnswer}
-								{#if setQuestion.userAnswer !== setQuestion.correctAnswer}
-									<li class="answers__answer answers__answer--incorrect">{answer}</li>
-								{:else}
-									<li class="answers__answer answers__answer--correct">{answer}</li>
+
+	<main class="exams-container">
+		{#each response.exams as exam}
+			<section class="exam-container">
+				<h2 class="title">{exam.examName}</h2>
+				{#each exam.setProblems as setProblem}
+					<p class="text">{setProblem.problem.problem}</p>
+					
+					{#each setProblem.setQuestions as setQuestion}
+						<p class="question">{setQuestion.question}</p>
+						<ul class="answers">
+							{#each setQuestion.answers as answer}
+
+								{#if answer === setQuestion.userAnswer}
+									{#if setQuestion.userAnswer !== setQuestion.correctAnswer}
+										<li class="answers__answer answers__answer--incorrect">
+											{answer}
+											<div class="user-answer user-answer--incorrect">Tu respuesta</div>
+										</li>
+										{:else}
+										<li class="answers__answer answers__answer--correct">
+											{answer}
+											<div class="user-answer user-answer--correct">Tu respuesta</div>
+										</li>
+									{/if}
+									{:else}
+									{#if answer === setQuestion.correctAnswer}
+									<li class="answers__answer answers__answer--correct">
+										{answer}
+										<div class="user-answer user-answer--correct">Respuesta Correcta</div>
+									</li>
+									{:else}
+										<li class="answers__answer">{answer}</li>
+									{/if}
 								{/if}
-							{:else}
-								{#if answer === setQuestion.correctAnswer}
-									<li class="answers__answer answers__answer--correct">{answer}</li>
-								{:else}
-									<li class="answers__answer">{answer}</li>
-								{/if}
-							{/if}
-							<!-- {#if setQuestion.userAnswer === setQuestion.correctAnswer}
-								<li class="answers__answer answers__answer--correct">{answer}</li>
-							{:else if setQuestion.userAnswer !== setQuestion.correctAnswer}	
-								<li class="answers__answer answers__answer--incorrect">{answer}</li>
-							{:else}
-								<li class="answers__answer answers__answer--incorrect">{answer}</li>
-							{/if}
-							 -->
-						{/each}
-					</ul>
+							{/each}
+						</ul>
+					{/each}
+
 				{/each}
+			</section>
+		{/each}		
+	</main>
 
-			{/each}
-		</section>
-	{/each}
+	<h2 class="title title--subtitle">Mira tus resultados o continúa con tu prueba</h2>
+	<section class="section exams-select">
+		<ExamsCard/>
+	</section>
 {/await}
-
 
 <style>
 	.answers {
+		padding-left: 1rem;
 		list-style: none;
 	}
 	.answers__answer {
@@ -84,5 +95,46 @@
 
 	.answers__answer--correct{
 		border-color: hsl(121, 54%, 48%);
+	}
+
+	.question{
+		padding-left: 1rem;
+		margin-bottom: 1.5rem;
+
+		display: list-item;
+		list-style-position: inside;
+	}
+
+	.exams-container{
+		display: flex;
+		overflow-x: scroll;
+
+		width: 95%;
+		margin-top: 2rem;
+		margin-left: auto;
+		margin-right: auto;
+	}
+	.exam-container{
+		background-color: var(--gray5);
+
+		min-width: 100%;
+		max-height: 90vh;
+
+		margin-right: 2rem;
+		padding-left: 1rem;
+		padding-right: 1rem;
+
+
+		overflow-y: scroll;
+	}
+
+	.title{
+		margin-top: 2rem;
+	}
+
+	.exams-select{
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+		gap: 1rem;
 	}
 </style>

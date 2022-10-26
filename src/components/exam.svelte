@@ -1,8 +1,11 @@
-<script>
+<script> 
 	import { user } from '../stores';
 	import { onMount } from 'svelte';
+
+	import { goto } from "$app/navigation";
+
 	import { getDocuments, db, addUserExam } from '../firebase.js';
-	import { doc, updateDoc } from 'firebase/firestore';
+	import { doc } from 'firebase/firestore';
 
 	export let examName;
 	let setProblems = [];
@@ -10,7 +13,11 @@
 	onMount(async () => {
 		try {
 			setProblems = [...(await getDocuments(examName))];
-			
+
+
+			// const xd = await getUserDoc($user.uid)
+			// console.log(xd.exams);
+
 		} catch (error) {
 			setProblems = error;
 		}
@@ -54,8 +61,14 @@
 			userAnswer.setQuestions = [...filteredQuestions].sort((a, b) => a.index - b.index);
 		}
 
+		console.log(userAnswers);
 		const docRef = doc(db, 'users', $user.uid);
-		addUserExam(docRef, { examName: examName, setProblems: [...userAnswers], date: Date.now() }, $user.uid )
+		const dateNow = Date.now()
+
+		const setExam = {date: dateNow, examName: examName, setProblems: [...userAnswers]}
+		
+		addUserExam(docRef, {...setExam}, $user.uid)
+		goto('/results')
 	};
 </script>
 
@@ -139,72 +152,3 @@
 		cursor: pointer;
 	}
 </style>
-
-<!-- <form class="section form" on:submit|preventDefault={sendData}>
-	{#each setProblems as setProblem}
-		{#if setProblems.problem.instructions}
-			<p>{setProblem.problem.instructions}</p>	
-		{/if}
-
-		<p>{setProblem.problem.problem}</p>	
-
-		{#each setProblem.setQuestions as setQuestion}
-			<fieldset class="form__fieldset">
-				<p>{setQuestion.question}</p>
-
-				<ul class="questions">
-					{#each setQuestion.answers as answer}
-						<div>
-							<li class="questions__question">
-								<label>
-									<input
-										required
-										on:click={(e) => addAnswer(e)}
-										type="radio"
-										name={setQuestion.question}
-										value={answer}
-										data-id={setProblem.id}
-									/>
-									{answer}
-								</label>
-							</li>
-						</div>
-					{/each}
-				</ul>
-			</fieldset>
-		{/each}
-	{/each}
-	<button class="btn">Finalizar Prueba</button>
-</form>
-
-<style>
-	.form__fieldset {
-		border: none;
-	}
-	.questions {
-		list-style: upper-alpha inside;
-		padding-left: 0px;
-	}
-
-	.questions__question {
-		margin-top: 1rem;
-		padding-left: 1.5rem;
-	}
-
-	label {
-		display: inline-block;
-		width: 92%;
-		cursor: pointer;
-	}
-
-	div {
-		height: 4rem;
-
-		margin-top: 1rem;
-		padding-top: auto;
-		padding-bottom: auto;
-
-		border-radius: 0.5rem;
-		border: 2px solid var(--gray0);
-	}
-</style> -->

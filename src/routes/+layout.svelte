@@ -37,6 +37,7 @@
 <footer class="footer">
 	<h2 class="title">Phare</h2>
 	<div class="footer__content">
+<!-- 		
 		<section class="footer__section">
 			<h2 class="footer__title title">Acerca de</h2>
 			<ul class="footer__ul">
@@ -47,18 +48,16 @@
 					<a href="./" class="link">Terminos de uso</a>
 				</li>
 			</ul>
-		</section>
+		</section> -->
+
 		<section class="footer__section">
 			<h2 class="footer__title title">Redes sociales</h2>
 			<ul class="footer__ul">
 				<li class="footer__li">
-					<a href="./" class="link">Facebook</a>
+					<a target="_blank" href="https://www.facebook.com/profile.php?id=100087389373162" class="link">Facebook</a>
 				</li>
 				<li class="footer__li">
-					<a href="./" class="link">YouTube</a>
-				</li>
-				<li class="footer__li">
-					<a href="./" class="link">Instagram</a>
+					<a target="_blank" href="https://www.instagram.com/phare.company/" class="link">Instagram</a>
 				</li>
 			</ul>
 		</section>
@@ -141,11 +140,6 @@
 		margin-top: 1.5rem;
 
 		padding: 1rem;
-
-		/* padding-top: 1rem;
-		padding-bottom: 1rem;
-		padding-right: 2rem;
-		padding-left: 2rem; */
 
 		border-radius: 1rem;
 		background-color: var(--gray5);

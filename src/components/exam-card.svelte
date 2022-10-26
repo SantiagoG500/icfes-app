@@ -1,16 +1,43 @@
 <script>
-	export let examTitle;
-	export let examLInk
-	export let examImg;
-	export let examImgAlt;
+  import { getUserDoc } from "../firebase.js";
+  import { onMount } from "svelte";
+  import { user } from "../stores.js";
+
+  let userExams = []
+  let examList = [
+      {examName: 'matematicas', route: '/math-exam', img: 'icons/matematicas.png'},
+      {examName: 'ingles', route: '/english-exam', img: 'icons/ingles.png'},
+      {examName: 'ciencias sociales', route: '/social-sciences-exam', img: 'icons/sociales.png'},
+      {examName: 'lectura critica', route: '/language-exam', img: 'icons/lenguaje.png'},
+    ]
+    
+
+  onMount(async () =>{
+    const userDoc = await getUserDoc($user.uid)
+    const {exams} = userDoc
+  
+    for (const exam of exams) userExams.push(exam.examName)
+    
+    userExams.forEach(exam =>{
+      const index = examList.find(examItem => examItem.examName === exam)
+      examList.splice(examList.indexOf(index), 1)
+    })
+    examList = [...examList]
+  })
 </script>
 
-<a class="link-container" href={examLInk}>
-	<main class="card">
-		<h2 class="card__title title">{examTitle}</h2>
-		<img class="card__img" src={examImg} alt={examImgAlt}>
-	</main>
-</a>
+{#if examList.length === 0}
+  <h1 class="title">¡¡¡Ya has finalizado tu prueba!!!</h1>
+{:else}
+  {#each examList as exam}
+    <a class="link-container" href={exam.route}>
+      <main class="card">
+        <h2 class="card__title title">{exam.examName}</h2>
+        <img class="card__img" src={exam.img} alt={exam.examName}>
+      </main>
+    </a>
+  {/each}
+{/if}
 
 <style>
   
@@ -18,15 +45,20 @@
     text-decoration: none;
   }
   .card{
-    display: flex;
+    justify-content: space-evenly;
     flex-direction: column;
     align-items: center;
+    position: relative;
+    display: flex;
   
-    max-width: 50rem;
     margin-left: auto;
     margin-right: auto;
-    /* padding-top: 1rem; */
     padding-bottom: 1rem;
+    padding-top: 1rem;
+
+    max-width: 20rem;
+    min-height: 20rem;
+
 
     border: 4px solid var(--gray4);
     border-radius: .5rem;
@@ -34,12 +66,11 @@
     background-color: var(--gray5);
   }
   .card::before{
+    position: absolute;
     display: block;
     content: '';
 
-    left: 0px;
     top: 0px;
-
     width: 100%;
     height: 10px;
 
@@ -50,6 +81,10 @@
     color: var(--gray3);
     margin-top: 0px;
   }
+  .card__img{
+    width: 200px;
+  }
+
 
   @media (hover: hover){
     .card:hover{
