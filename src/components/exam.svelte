@@ -68,7 +68,7 @@
 		const setExam = {date: dateNow, examName: examName, setProblems: [...userAnswers]}
 		
 		addUserExam(docRef, {...setExam}, $user.uid)
-		goto('/results')
+		goto('/results-2')
 	};
 </script>
 

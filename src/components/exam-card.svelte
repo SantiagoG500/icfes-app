@@ -27,7 +27,15 @@
 </script>
 
 {#if examList.length === 0}
-  <h1 class="title">¡¡¡Ya has finalizado tu prueba!!!</h1>
+  <div class="container">
+    <h1 class="title">¡¡¡Ya has finalizado tu prueba!!!</h1>
+    <p class="text">
+      Muchas gracias por haber probado nuestra DEMO técnica, estaremos escuchando los comentarios de retroalimentación para mejorar nuestro servicio
+    </p>
+    <p class="text">
+      Contáctanos <strong>phare.company@gmail.com</strong>
+    </p>
+  </div>
 {:else}
   {#each examList as exam}
     <a class="link-container" href={exam.route}>

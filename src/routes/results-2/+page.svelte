@@ -8,7 +8,7 @@
 		<h1 class="title">Espera un minuto, por favor...</h1>
 {:then response}
 
-	
+	<h1 class="title">Resultados</h1>	
 	<h2 class="title title--subtitle">Desliza a los lados para ver los resultados de otras pruebas</h2>
 
 
