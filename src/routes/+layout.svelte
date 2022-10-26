@@ -23,7 +23,7 @@
 				<li class="nav__li"><a class="link link--nav" href="./">Home</a></li>
 				<li class="nav__li"><a class="link link--nav" href="exams/">Inicia tu prueba</a></li>
 				<li class="nav__li"><a class="link link--nav" href="account/">Perfil</a></li>
-				<li class="nav__li"><a class="link link--nav" href="results/">Resultados</a></li>
+				<li class="nav__li"><a class="link link--nav" href="results-2/">Resultados</a></li>
 			{:else}
 				<li class="nav__li"><a class="link link--nav" href="./">Home</a></li>
 				<li class="nav__li"><a class="link link--nav" href="login/">Inicia sesión</a></li>
